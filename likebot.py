@@ -12,9 +12,6 @@ disliked = 0
 
 #Create start command handler
 def start(update:Update, context:CallbackContext):
-    """Starts with picture 0 likes and 0 dislikes"""
-    
-    
     
     photo = "https://upload.wikimedia.org/wikipedia/commons/4/41/Sunflower_from_Silesia2.jpg"
     inlineKeyboard1 = InlineKeyboardButton(f"👍{liked}", callback_data='like')
