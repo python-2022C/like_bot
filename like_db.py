@@ -23,12 +23,22 @@ class LikeDB:
         returns
             all users likes
         """
+        data_base = self.db_path
+        sum_like = 0
+        for k,v in data_base.items():
+            sum_like += v['likes']
+        return sum_like
         
     def all_dislikes(self):
         """Counts all users dislikes
         returns
             all users dislikes
         """
+        data_base = self.db_path
+        sum_dislikes = 0
+        for k,v in data_base.items():
+            sum_dislikes += v['dislikes']
+        return sum_dislikes
         
         
     #Add a like to the database
@@ -40,7 +50,9 @@ class LikeDB:
         returns:
             The number of likes and dislikes for the post
         '''
-
+        data_base = self.db_path
+        data_base[user_id] = {'likes':1,'dislikes':0}
+        return data_base
   
     #Add a dislike to the database
     def add_dislike(self, user_id:str)->dict:
@@ -51,3 +63,6 @@ class LikeDB:
         returns:
             The number of likes and dislikes for the post
         '''
+        data_base = self.db_path
+        data_base[user_id] = {'likes':0,'dislikes':1}
+        return data_base
