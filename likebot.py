@@ -5,7 +5,7 @@ from like_db import LikeDB
 
 #Import TOKEN from envoirment variable
 import os
-TOKEN = "5567524975:AAHH4ioN3ZGUXbzPPPrXNk2tdWJU3O_fFyk" #os.environ['TOKEN']
+TOKEN = os.environ['TOKEN']
 
 #Create start command handler
 def start(update:Update, context:CallbackContext):
