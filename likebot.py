@@ -5,20 +5,54 @@ from like_db import LikeDB
 
 #Import TOKEN from envoirment variable
 import os
-TOKEN = os.environ['TOKEN']
+TOKEN = "5567524975:AAHH4ioN3ZGUXbzPPPrXNk2tdWJU3O_fFyk" #os.environ['TOKEN']
 
 #Create start command handler
 def start(update:Update, context:CallbackContext):
     """Starts with picture all likes and all dislikes"""
-    pass
+    data = LikeDB('like_db.json')
+    like = data.all_likes()
+    liked = data.all_dislikes()
+
+    text = f'like:{like}, dislike{liked}'
+    inlineKeyboard = InlineKeyboardButton(f'👎{liked}',callback_data='dislike')
+    inlineKeyboard1 = InlineKeyboardButton(f'👍{like}',callback_data='like')
+    reply_markup = InlineKeyboardMarkup([[inlineKeyboard,inlineKeyboard1]])
+    update.message.reply_text(text, reply_markup=reply_markup)
 
 def like(update:Update, context:CallbackContext):
     """Send the message with the number of likes and dislikes"""
-    pass
+    query = update.callback_query
+    user_id = query.from_user.id
+
+    data = LikeDB('like_db.json')
+    data.add_like(user_id)
+
+    like = data.all_likes()
+    liked = data.all_dislikes()
+
+    text = f'like:{like}, dislike{liked}'
+    inlineKeyboard = InlineKeyboardButton(f'👎{liked}',callback_data='dislike')
+    inlineKeyboard1 = InlineKeyboardButton(f'👍{like}',callback_data='like')
+    reply_markup = InlineKeyboardMarkup([[inlineKeyboard,inlineKeyboard1]])
+    query.edit_message_text(text, reply_markup=reply_markup)
 
 def dislike(update:Update, context:CallbackContext):
     """Send the message with the number of likes and dislikes"""
-    pass
+    query = update.callback_query
+    user_id = query.from_user.id
+
+    data = LikeDB('like_db.json')
+    data.add_dislike(user_id)
+
+    like = data.all_likes()
+    liked = data.all_dislikes()
+
+    text = f'like:{like}, dislike{liked}'
+    inlineKeyboard = InlineKeyboardButton(f'👎{liked}',callback_data='dislike')
+    inlineKeyboard1 = InlineKeyboardButton(f'👍{like}',callback_data='like')
+    reply_markup = InlineKeyboardMarkup([[inlineKeyboard,inlineKeyboard1]])
+    query.edit_message_text(text, reply_markup=reply_markup)
 
 #Create updater and dispatcher
 updater = Updater(TOKEN)
@@ -31,6 +65,3 @@ updater.dispatcher.add_handler(CallbackQueryHandler(dislike, pattern='dislike'))
 #Start the bot
 updater.start_polling()
 updater.idle()
-
-
-
