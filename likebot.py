@@ -5,7 +5,7 @@ from like_db import LikeDB
 
 #Import TOKEN from envoirment variable
 import os
-TOKEN = os.environ['TOKEN']
+TOKEN = "5567524975:AAHH4ioN3ZGUXbzPPPrXNk2tdWJU3O_fFyk" #os.environ['TOKEN']
 
 #Create start command handler
 def start(update:Update, context:CallbackContext):
@@ -26,7 +26,7 @@ def like(update:Update, context:CallbackContext):
     user_id = query.from_user.id
 
     data = LikeDB('like_db.json')
-    data.add_like(user_id)
+    data.add_like(str(user_id))
 
     like = data.all_likes()
     liked = data.all_dislikes()
@@ -43,7 +43,7 @@ def dislike(update:Update, context:CallbackContext):
     user_id = query.from_user.id
 
     data = LikeDB('like_db.json')
-    data.add_dislike(user_id)
+    data.add_dislike(str(user_id))
 
     like = data.all_likes()
     liked = data.all_dislikes()
