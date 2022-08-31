@@ -5,7 +5,7 @@ from like_db import LikeDB
 
 #Import TOKEN from envoirment variable
 import os
-TOKEN = "5567524975:AAHH4ioN3ZGUXbzPPPrXNk2tdWJU3O_fFyk" #os.environ['TOKEN']
+TOKEN = "5699418530:AAF-rw_GFSO_DeL-19T4s2eiGDXLk6OSTIg" #os.environ['TOKEN']
 
 #Create start command handler
 def start(update:Update, context:CallbackContext):
@@ -14,7 +14,7 @@ def start(update:Update, context:CallbackContext):
     like = data.all_likes()
     liked = data.all_dislikes()
 
-    text = f'like:{like}, dislike{liked}'
+    text = f'like and dislike'
     inlineKeyboard = InlineKeyboardButton(f'👎{liked}',callback_data='dislike')
     inlineKeyboard1 = InlineKeyboardButton(f'👍{like}',callback_data='like')
     reply_markup = InlineKeyboardMarkup([[inlineKeyboard,inlineKeyboard1]])
@@ -31,7 +31,7 @@ def like(update:Update, context:CallbackContext):
     like = data.all_likes()
     liked = data.all_dislikes()
 
-    text = f'like:{like}, dislike{liked}'
+    text = f'like and dislike'
     inlineKeyboard = InlineKeyboardButton(f'👎{liked}',callback_data='dislike')
     inlineKeyboard1 = InlineKeyboardButton(f'👍{like}',callback_data='like')
     reply_markup = InlineKeyboardMarkup([[inlineKeyboard,inlineKeyboard1]])
@@ -48,7 +48,7 @@ def dislike(update:Update, context:CallbackContext):
     like = data.all_likes()
     liked = data.all_dislikes()
 
-    text = f'like:{like}, dislike{liked}'
+    text = f'like and dislike'
     inlineKeyboard = InlineKeyboardButton(f'👎{liked}',callback_data='dislike')
     inlineKeyboard1 = InlineKeyboardButton(f'👍{like}',callback_data='like')
     reply_markup = InlineKeyboardMarkup([[inlineKeyboard,inlineKeyboard1]])
