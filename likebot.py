@@ -18,7 +18,7 @@ def start(update:Update, context:CallbackContext):
     inlineKeyboard = InlineKeyboardButton(f'👎{liked}',callback_data='dislike')
     inlineKeyboard1 = InlineKeyboardButton(f'👍{like}',callback_data='like')
     reply_markup = InlineKeyboardMarkup([[inlineKeyboard,inlineKeyboard1]])
-    update.message.reply_text(text, reply_markup=reply_markup)
+    update.message.reply_photo( 'https://www.drupal.org/files/project-images/like_and_dislike.png',reply_markup=reply_markup)
 
 def like(update:Update, context:CallbackContext):
     """Send the message with the number of likes and dislikes"""
@@ -35,7 +35,7 @@ def like(update:Update, context:CallbackContext):
     inlineKeyboard = InlineKeyboardButton(f'👎{liked}',callback_data='dislike')
     inlineKeyboard1 = InlineKeyboardButton(f'👍{like}',callback_data='like')
     reply_markup = InlineKeyboardMarkup([[inlineKeyboard,inlineKeyboard1]])
-    query.edit_message_text(text, reply_markup=reply_markup)
+    query.edit_message_caption(reply_markup=reply_markup)
 
 def dislike(update:Update, context:CallbackContext):
     """Send the message with the number of likes and dislikes"""
@@ -52,7 +52,7 @@ def dislike(update:Update, context:CallbackContext):
     inlineKeyboard = InlineKeyboardButton(f'👎{liked}',callback_data='dislike')
     inlineKeyboard1 = InlineKeyboardButton(f'👍{like}',callback_data='like')
     reply_markup = InlineKeyboardMarkup([[inlineKeyboard,inlineKeyboard1]])
-    query.edit_message_text(text, reply_markup=reply_markup)
+    query.edit_message_caption(reply_markup=reply_markup)
 
 #Create updater and dispatcher
 updater = Updater(TOKEN)
