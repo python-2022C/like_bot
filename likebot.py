@@ -13,12 +13,15 @@ def start(update:Update, context:CallbackContext):
     data = LikeDB('like_db.json')
     like = data.all_likes()
     liked = data.all_dislikes()
+    user_id = str(update.message.from_user.id)
+    dat_db = data.db
+    user_like = dat_db[user_id]['like']
+    user_dislike = dat_db[user_id]['dislike']
 
-    text = f'like and dislike'
     inlineKeyboard = InlineKeyboardButton(f'👎{liked}',callback_data='dislike')
     inlineKeyboard1 = InlineKeyboardButton(f'👍{like}',callback_data='like')
     reply_markup = InlineKeyboardMarkup([[inlineKeyboard,inlineKeyboard1]])
-    update.message.reply_photo( 'https://www.drupal.org/files/project-images/like_and_dislike.png',reply_markup=reply_markup)
+    update.message.reply_photo( 'https://www.drupal.org/files/project-images/like_and_dislike.png',reply_markup=reply_markup, caption=f'You have {user_like} likes and {user_dislike} dislikes')
 
 def like(update:Update, context:CallbackContext):
     """Send the message with the number of likes and dislikes"""
@@ -27,15 +30,18 @@ def like(update:Update, context:CallbackContext):
 
     data = LikeDB('like_db.json')
     data.add_like(str(user_id))
+    user_id2 = str(query.from_user.id)
+    dat_db = data.db
+    user_like = dat_db[user_id2]['like']
+    user_dislike = dat_db[user_id2]['dislike']
 
     like = data.all_likes()
     liked = data.all_dislikes()
 
-    text = f'like and dislike'
     inlineKeyboard = InlineKeyboardButton(f'👎{liked}',callback_data='dislike')
     inlineKeyboard1 = InlineKeyboardButton(f'👍{like}',callback_data='like')
     reply_markup = InlineKeyboardMarkup([[inlineKeyboard,inlineKeyboard1]])
-    query.edit_message_caption(reply_markup=reply_markup)
+    query.edit_message_caption(reply_markup=reply_markup, caption=f'You have {user_like} likes and {user_dislike} dislikes')
 
 def dislike(update:Update, context:CallbackContext):
     """Send the message with the number of likes and dislikes"""
@@ -44,15 +50,18 @@ def dislike(update:Update, context:CallbackContext):
 
     data = LikeDB('like_db.json')
     data.add_dislike(str(user_id))
+    user_id2 = str(query.from_user.id)
+    dat_db = data.db
+    user_like = dat_db[user_id2]['like']
+    user_dislike = dat_db[user_id2]['dislike']
 
     like = data.all_likes()
     liked = data.all_dislikes()
 
-    text = f'like and dislike'
     inlineKeyboard = InlineKeyboardButton(f'👎{liked}',callback_data='dislike')
     inlineKeyboard1 = InlineKeyboardButton(f'👍{like}',callback_data='like')
     reply_markup = InlineKeyboardMarkup([[inlineKeyboard,inlineKeyboard1]])
-    query.edit_message_caption(reply_markup=reply_markup)
+    query.edit_message_caption(reply_markup=reply_markup, caption=f'You have {user_like} likes and {user_dislike} dislikes')
 
 #Create updater and dispatcher
 updater = Updater(TOKEN)
