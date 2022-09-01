@@ -53,17 +53,14 @@ class LikeDB:
             The number of likes and dislikes for the post
         '''
         if self.db.get(user_id):
-            if self.db[user_id]['like'] == 0:
-                self.db[user_id]['like'] = 1
-                if self.db[user_id]['dislike'] == 1:
+                if self.db[user_id]['like'] == 0:
+                    self.db[user_id]['like'] = 1
                     self.db[user_id]['dislike'] = 0
-            elif self.db[user_id]['like'] == 1:
-                self.db[user_id]['like'] = 0
+                elif self.db[user_id]['like'] == 1:
+                    self.db[user_id]['like'] = 0
+                    self.db[user_id]['dislike'] = 0
         else:
-            self.db[user_id] = {
-                'like': 1,
-                'dislike': 0
-            }
+            self.db[user_id] = {'like': 1, 'dislike': 0}
         self.save()
 
   
@@ -79,13 +76,10 @@ class LikeDB:
         if self.db.get(user_id):
             if self.db[user_id]['dislike'] == 0:
                 self.db[user_id]['dislike'] = 1
-                if self.db[user_id]['like'] == 1:
-                    self.db[user_id]['like'] = 0
+                self.db[user_id]['like'] = 0
             elif self.db[user_id]['dislike'] == 1:
                 self.db[user_id]['dislike'] = 0
+                self.db[user_id]['like'] = 0
         else:
-            self.db[user_id] = {
-                'like': 0,
-                'dislike': 1
-            }
+            self.db[user_id] = {'like': 0, 'dislike': 1}
         self.save()
