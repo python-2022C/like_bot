@@ -12,11 +12,11 @@ class LikeDB:
             self.db = {}
             #Save the database to the database file
             with open(db_path, 'w') as f:
-                json.dump(self.db, f)
+                json.dump(self.db, f, indent=4)
 
     def save(self):
         with open(self.db_path, 'w') as f:
-            json.dump(self.db, f)
+            json.dump(self.db, f, indent=4)
     
     def all_likes(self):
         """Counts all users likes
