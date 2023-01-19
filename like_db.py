@@ -83,3 +83,7 @@ class LikeDB:
         else:
             self.db[user_id] = {'like': 0, 'dislike': 1}
         self.save()
+
+    def add_user(self, user_id):
+        self.db[user_id] = {'like': 0, 'dislike': 0}
+        self.save()
