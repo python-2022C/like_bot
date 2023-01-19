@@ -58,6 +58,7 @@ def dislike(update:Update, context:CallbackContext):
 
     like = data.all_likes()
     liked = data.all_dislikes()
+    print(like, liked)
 
     inlineKeyboard = InlineKeyboardButton(f'👎{liked}',callback_data='dislike')
     inlineKeyboard1 = InlineKeyboardButton(f'👍{like}',callback_data='like')

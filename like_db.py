@@ -25,8 +25,8 @@ class LikeDB:
         """
         likes = 0
         if self.db:
-            for user in self.db:
-                likes += self.db[user]['like']
+            for user, data in self.db.items():
+                likes += data['like']
         
         return likes
         
@@ -37,8 +37,8 @@ class LikeDB:
         """
         dislikes = 0
         if self.db:
-            for user in self.db:
-                dislikes += self.db[user]['dislike']
+            for user_id, data in self.db.items():
+                dislikes += data['dislike']
         
         return dislikes
         
